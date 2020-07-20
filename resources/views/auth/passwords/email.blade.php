@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form  action="{{ url('resteEmail/send') }}" method="post">
                         @csrf
 
                         <div class="form-group row">
@@ -33,7 +33,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" value="Send Message" name="send" value="send" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

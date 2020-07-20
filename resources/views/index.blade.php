@@ -82,8 +82,33 @@
 	
 					<h3>Help us to improve !</h3><br>
 
-					<form action="#" method="post">
+						@if(count($errors) > 0 )
+						<div class="alert alert-danger">
 
+						<button type="button" class="close" data-dismiss="alert">x</button> 
+							<ul>
+							@foreach($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+							</ul>
+						</div>
+
+						@endif
+
+						@if($message ?? '' == Session::get('success'))
+
+
+						<div class="alert alert-success alert-block">
+
+								<button type="button" class="close" data-dismiss="alert">x</button> 
+								<strong>{{ $message ?? '' }} </strong>
+
+						</div>
+						@endif
+
+
+					<form action="{{ url('sendemail/send') }}" method="post">
+						 @csrf
 						<div class="field half first">
 							<label for="name">Name</label>
 							<input name="name" id="name" type="text" placeholder="Name">
@@ -97,7 +122,7 @@
 							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
 						</div>
 						<ul class="actions">
-							<li><input value="Send Message" class="button alt" type="submit"></li>
+							<li><input value="Send Message" name="send" value="Send" class="button alt" type="submit"></li>
 						</ul>
 					</form>
 				</div>
